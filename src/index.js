@@ -1,10 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { Auth0Provider } from '@auth0/auth0-react';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Auth0Provider } from "@auth0/auth0-react";
 import { getConfig } from "./config";
+import { BrowserRouter } from "react-router-dom";
 
 const config = getConfig();
 
@@ -12,21 +13,21 @@ const providerConfig = {
   domain: config.domain,
   clientId: config.clientId,
   authorizationParams: {
-    redirect_uri: window.location.origin,
+    redirect_uri: config.callbackURL,
     ...(config.audience ? { audience: config.audience } : null),
-    scope: config.scope
+    scope: config.scope,
   },
 };
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <Auth0Provider
-      {...providerConfig}
-    >
-      <App />
-    </Auth0Provider>
+    <BrowserRouter>
+      <Auth0Provider {...providerConfig}>
+        <App />
+      </Auth0Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

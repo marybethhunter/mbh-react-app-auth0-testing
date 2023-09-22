@@ -46,13 +46,19 @@ const Metadata = () => {
   }, [getAccessTokenSilently, user?.sub]);
 
   return (
-    <>
+    <div style={{ marginBottom: "20px" }}>
       <p style={{ fontSize: "11px", width: "500px" }}>
         User metadata will appear below if exists. This is a call to the Auth0
-        Management API in a useEffect() in the Metadata.js componen using
+        Management API in a useEffect() in the Metadata.js component using
         getAccessTokenSilently().
       </p>
-      <div style={{ border: "1px solid white", padding: "12px" }}>
+      <div
+        style={{
+          border: "1px solid white",
+          padding: "12px",
+          backgroundColor: "#00A36C",
+        }}
+      >
         {isAuthenticated && userMetadata ? (
           <div>User Metadata: {JSON.stringify(userMetadata, null, 2)}</div>
         ) : (
@@ -66,6 +72,7 @@ const Metadata = () => {
             padding: "12px",
             marginTop: 22,
             width: "fit-content",
+            backgroundColor: "#00A36C",
           }}
         >
           {userAccessToken ? (
@@ -77,7 +84,7 @@ const Metadata = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
