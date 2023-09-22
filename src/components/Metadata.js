@@ -9,7 +9,8 @@ const providerConfig = {
 };
 
 const Metadata = () => {
-  const { user, isAuthenticated, getAccessTokenSilently, getIdTokenClaims } = useAuth0();
+  const { user, isAuthenticated, getAccessTokenSilently, getIdTokenClaims } =
+    useAuth0();
   const [userMetadata, setUserMetadata] = useState(null);
   const [userAccessToken, setUserAccessToken] = useState(null);
   const [userIdToken, setUserIdToken] = useState(null);
@@ -36,7 +37,6 @@ const Metadata = () => {
 
         const { user_metadata } = await metadataResponse.json();
 
-
         const claims = await getIdTokenClaims();
         const id_token = claims.__raw;
 
@@ -49,7 +49,7 @@ const Metadata = () => {
     };
 
     getUserMetadata();
-  }, [getAccessTokenSilently, user?.sub]);
+  }, [getAccessTokenSilently, getIdTokenClaims, user?.sub]);
 
   return (
     <div style={{ marginBottom: "20px" }}>
